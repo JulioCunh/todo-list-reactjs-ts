@@ -1,20 +1,37 @@
+import { ITask } from '../../App';
+import { Task } from '../Task';
 import styles from './Tasks.module.css';
-import { BsCircle } from 'react-icons/bs';
-import { VscTrash } from 'react-icons/vsc';
 
-export function Tasks() {
+interface Props {
+  tasks: ITask[];
+  onDelete: (taskId: string) => void;
+}
+
+export function Tasks({ tasks, onDelete }: Props) {
+  const tasksQantity = tasks.length;
+  const completedTaks = tasks.filter((task) => task.isCompleted).length;
+
   return (
-    <div className={styles.tasks}>
-      <button className={styles.buttonCheck}>
-        <BsCircle size={20} />
-      </button>
-      <p>
-        Integer urna interdum massa libero auctor neque turpis turpis semper.
-        Duis vel sed fames integer.
-      </p>
-      <button className={styles.buttonRemove}>
-        <VscTrash size={20} />
-      </button>
-    </div>
+    <section className={styles.todo}>
+      <header className={styles.header}>
+        <div>
+          <p>Tarefas criadas</p>
+          <span>{tasksQantity}</span>
+        </div>
+
+        <div>
+          <p className={styles.textPurple}>concluídas</p>
+          <span>
+            {completedTaks} de {tasksQantity}
+          </span>
+        </div>
+      </header>
+
+      <div className={styles.list}>
+        {tasks.map((task) => (
+          <Task key={task.id} task={task} onDelete={onDelete} />
+        ))}
+      </div>
+    </section>
   );
 }

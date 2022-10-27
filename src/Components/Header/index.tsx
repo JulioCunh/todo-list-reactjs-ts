@@ -1,17 +1,37 @@
 import todoLogo from '../../assets/Logo.svg';
 import styles from './Header.module.css';
 import { AiOutlinePlusCircle } from 'react-icons/ai';
+import { ChangeEvent, FormEvent, useState } from 'react';
 
-export function Header() {
+interface Props {
+  onAddTask: (taskTitle: string) => void;
+}
+
+export function Header({ onAddTask }: Props) {
+  const [title, setTitle] = useState('');
+
+  function handleSubmit(event: FormEvent) {
+    event.preventDefault();
+
+    onAddTask(title);
+
+    setTitle('');
+  }
+
+  function onChangeTitle(event: ChangeEvent<HTMLInputElement>) {
+    setTitle(event.target.value);
+  }
+
   return (
     <>
       <header className={styles.header}>
         <img src={todoLogo} alt={'Logotipo do todo'} />;
-        <form className={styles.newTasksForm}>
+        <form className={styles.newTasksForm} onSubmit={handleSubmit}>
           <input
             className={styles.inputNewTasksForm}
-            type="text"
             placeholder="Adicione uma nova tarefa"
+            onChange={onChangeTitle}
+            value={title}
           />
           <button className={styles.buttonNewTasksForm}>
             Criar

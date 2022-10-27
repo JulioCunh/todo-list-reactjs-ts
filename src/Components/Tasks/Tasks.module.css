@@ -1,29 +1,49 @@
-.tasks {
-  width: 100%;
-  background: var(--gray-500);
-  border: 1px solid var(--gray-400);
-  padding: 1rem;
-  border-radius: 0.5rem;
+.todo { 
+ max-width: 46rem;
+ margin: 0 auto;
+ margin-top: 5.625rem;
+ padding: 0 1rem;
+}
+
+.header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.75rem;
-
-  color: var(--gray-100);
-  font-family: Inter, sans-serif;
-  font-weight: 400;
-  font-size: 0.875rem;
-  line-height: 140%;
+  margin-bottom: 1.5rem;
 }
 
-.buttonCheck {
-  background: none;
-  border: none;
+.header div {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+
+
+.header p {
   color: var(--blue);
+  font-size: 0,875rem;
+  font-weight: 700;
+  line-height: 1.0625rem;
 }
 
-.buttonRemove {
-  background: none;
-  border: none;
-  color: var(--gray-300);
+.header p.textPurple {
+  color: var(--purple);
 }
+
+.header span {
+  background: var(--gray-400);
+  color: var(--gray-200);
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 0.9375rem;
+  padding: 3px 9px;
+  border-radius: 999px;
+}
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+ }
+
+
